@@ -18,52 +18,59 @@
 <title>Prompt Library</title>
 <style>
 * { box-sizing: border-box; }
-:root { --bg: #f5f0e6; --card: #fff; --ink: #1a2332; --muted: #667085; --brand: #c2410c; --brand-dark: #9a3412; --line: #e4e7ec; }
-body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
-header { position: sticky; top: 0; z-index: 10; background: var(--card); border-bottom: 1px solid var(--line); box-shadow: 0 1px 4px rgba(26, 35, 50, 0.08); }
-.header-inner { max-width: 900px; margin: 0 auto; padding: .75rem 1rem; display: flex; align-items: center; gap: .75rem; }
-.logo-mark { display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; flex: 0 0 auto; border-radius: .6rem; background: var(--brand); color: #fff; }
-.logo-mark img { width: 100%; height: 100%; border-radius: .6rem; object-fit: cover; display: block; }
-.hero img { width: 100%; height: auto; border-radius: 1rem; display: block; margin: 0 0 1.25rem; }
-header h1 { margin: 0; font-size: 1.5rem; line-height: 1.2; }
-main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
-.tagline { margin: 0 0 1.25rem; color: var(--muted); font-size: 1.05rem; }
-.controls { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-bottom: 1rem; }
-.controls label { font-weight: 600; }
-#search { flex: 1 1 240px; padding: .7rem 1rem; font-size: 1rem; border: 1px solid var(--line); border-radius: .75rem; background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgba(26, 35, 50, 0.06); }
+:root { --bg: #f1f5f9; --header-bg: #f8fafc; --card: #fff; --ink: #0f172a; --body-text: #334155; --muted: #475569; --brand: #1d4ed8; --brand-dark: #1e40af; --line: #e2e8f0; --pale: #eff6ff; --box-bg: #f1f5f9; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--body-text); line-height: 1.55; }
+header { position: sticky; top: 0; z-index: 10; background: var(--header-bg); border-bottom: 1px solid var(--line); }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: .9rem 1.5rem; display: flex; align-items: center; }
+.wordmark { margin: 0; font-size: 1.35rem; font-weight: 800; color: var(--brand); line-height: 1.2; }
+main { max-width: 1200px; margin: 0 auto; padding: 1rem 1.5rem 3rem; }
+.hero { text-align: center; padding: 2.5rem 1rem 1.5rem; }
+.hero-title { margin: 0 0 .75rem; font-size: 2.5rem; line-height: 1.15; font-weight: 800; color: var(--brand); }
+.tagline { margin: 0 auto; color: var(--muted); font-size: 1.1rem; max-width: 640px; }
+.controls { display: flex; justify-content: center; margin: 1.5rem 0 1rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+#search { flex: 0 1 640px; width: 100%; padding: .85rem 1.25rem; font-size: 1rem; border: 1px solid var(--line); border-radius: .75rem; background: var(--header-bg); color: var(--ink); box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06); }
 #search:focus { border-color: var(--brand); }
-.filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .5rem; }
+.filters { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin-bottom: .5rem; }
 button { font: inherit; cursor: pointer; }
-.pill { padding: .45rem .95rem; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--ink); font-weight: 600; }
+.pill { padding: .5rem 1rem; border: 1px solid #dbeafe; border-radius: 999px; background: var(--pale); color: var(--brand); font-weight: 600; }
 .pill[aria-pressed="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
 button:focus-visible, input:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
-#count { font-weight: 600; margin: .75rem 0 1rem; color: var(--muted); }
-.grid { display: grid; gap: 1rem; }
-article { background: var(--card); border: 1px solid var(--line); border-radius: 1rem; padding: 1.25rem; box-shadow: 0 1px 3px rgba(26, 35, 50, 0.08); }
-article:hover { box-shadow: 0 4px 12px rgba(26, 35, 50, 0.10); }
-article h2 { margin: 0 0 .25rem; font-size: 1.25rem; }
-.category { display: inline-block; font-size: .85rem; font-weight: 700; color: #9a3412; background: #fff7ed; padding: .1rem .6rem; border-radius: 999px; margin-bottom: .75rem; }
+#count { font-weight: 600; margin: .75rem 0 1.5rem; color: var(--muted); text-align: center; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+article { background: var(--card); border: 1px solid var(--line); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06); display: flex; flex-direction: column; }
+article h2 { margin: 0 0 .5rem; font-size: 1.2rem; color: var(--ink); line-height: 1.3; }
+.category { display: block; font-size: .8rem; font-weight: 800; color: var(--brand); margin-bottom: .5rem; }
+.note { color: #475569; margin: 0 0 1rem; }
+.body { background: var(--box-bg); border: 1px solid var(--line); border-radius: .75rem; padding: 1rem; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .9rem; color: var(--body-text); }
+.body.collapsed { max-height: 6.4rem; overflow: hidden; }
 .body p { margin: 0 0 .6rem; white-space: pre-wrap; }
-mark { background: #fef08a; color: var(--ink); padding: 0 .15rem; border-radius: .2rem; }
-.note { color: var(--muted); font-style: italic; }
+.body p:last-child { margin-bottom: 0; }
+mark { background: #dbeafe; color: var(--ink); padding: 0 .15rem; border-radius: .2rem; }
+.toggle-row { margin-top: .75rem; }
+.toggleBtn { background: none; border: none; padding: 0; color: var(--brand); font-weight: 700; }
 .actions { display: flex; gap: .5rem; margin-top: 1rem; }
 .copyBtn { padding: .55rem 1.1rem; border-radius: .5rem; border: 1px solid var(--brand); background: var(--brand); color: #fff; font-weight: 600; }
 .copyBtn:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
-@media (max-width: 600px) { header h1 { font-size: 1.25rem; } .header-inner { padding: .6rem 1rem; } article { padding: 1rem; } main { padding: 1.25rem 1rem 2.5rem; } }
+footer { border-top: 1px solid var(--line); padding: 1.25rem 1rem 2rem; text-align: center; color: var(--muted); font-size: .9rem; }
+footer p { margin: 0; }
+@media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .hero-title { font-size: 2rem; } .hero { padding-top: 1.5rem; } article { padding: 1.25rem; } main { padding-left: 1rem; padding-right: 1rem; } .header-inner { padding-left: 1rem; padding-right: 1rem; } }
 </style>
 </head>
 <body>
 <header>
 <div class="header-inner">
-<span class="logo-mark" aria-hidden="true"><img src="assets/icon.png" alt=""></span>
-<h1>Prompt Library</h1>
+<p class="wordmark">Prompt Library</p>
 </div>
 </header>
 <main>
+<section class="hero">
+<h1 class="hero-title">Prompt Library</h1>
 <p class="tagline">Copy-ready AI prompts for learning, personal finance, LinkedIn, and photo editing.</p>
-<div class="hero"><img src="assets/hero.webp" alt="Illustration of a person chatting with a friendly AI assistant about prompts"></div>
+</section>
 <div class="controls">
-<label for="search">Search prompts</label>
+<label class="sr-only" for="search">Search prompts</label>
 <input id="search" type="search" placeholder="Search titles and prompt text…">
 </div>
 <div class="filters" role="group" aria-label="Filter by category">
@@ -77,6 +84,7 @@ mark { background: #fef08a; color: var(--ink); padding: 0 .15rem; border-radius:
 <div class="grid" id="list"></div>
 <noscript><p>Enable JavaScript to search, filter, and copy prompts.</p></noscript>
 </main>
+<footer><p>33 prompts · Prompt Library</p></footer>
 <script>
 const PROMPTS = [
 {"id":1,"title":"The Learning Curve Destroyer","category":"Learning","body":"You are a teacher who has only 4 hours with me and will never see me again.\n\nYour only objective is to make me functional in [SKILL] before the time runs out. Do not give me theory without practical use, and do not give me a generic list.\n\nTell me three things: what to learn first, what to ignore completely, and the one exercise that, done a single time, would put me ahead of 70% of people who have studied this for months.\n\nThen teach me the first step and wait for my response before continuing.","note":"For picking up any new skill fast — what to learn first, what to skip, and the one exercise that matters most."},
@@ -171,22 +179,40 @@ function render() {
   listEl.textContent = "";
   shown.forEach(function (p) {
     const card = document.createElement("article");
-    const h2 = document.createElement("h2");
-    h2.textContent = p.title;
-    card.appendChild(h2);
     const cat = document.createElement("span");
     cat.className = "category";
     cat.textContent = p.category;
     card.appendChild(cat);
-    const bodyDiv = document.createElement("div");
-    bodyDiv.className = "body";
-    renderBody(bodyDiv, p.body);
-    card.appendChild(bodyDiv);
+    const h2 = document.createElement("h2");
+    h2.textContent = p.title;
+    card.appendChild(h2);
     if (p.note) {
       const note = document.createElement("p");
       note.className = "note";
       note.textContent = p.note;
       card.appendChild(note);
+    }
+    const bodyDiv = document.createElement("div");
+    bodyDiv.className = "body";
+    renderBody(bodyDiv, p.body);
+    card.appendChild(bodyDiv);
+    if (p.body.length > 300) {
+      bodyDiv.classList.add("collapsed");
+      const toggleRow = document.createElement("div");
+      toggleRow.className = "toggle-row";
+      const toggleBtn = document.createElement("button");
+      toggleBtn.type = "button";
+      toggleBtn.className = "toggleBtn";
+      toggleBtn.textContent = "Show more";
+      toggleBtn.setAttribute("aria-expanded", "false");
+      toggleBtn.setAttribute("aria-label", "Show more of " + p.title);
+      toggleBtn.addEventListener("click", function () {
+        const collapsed = bodyDiv.classList.toggle("collapsed");
+        toggleBtn.textContent = collapsed ? "Show more" : "Show less";
+        toggleBtn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+      });
+      toggleRow.appendChild(toggleBtn);
+      card.appendChild(toggleRow);
     }
     const actions = document.createElement("div");
     actions.className = "actions";

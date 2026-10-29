@@ -8,53 +8,60 @@
 <meta property="og:description" content="A searchable library of AI prompts for learning, personal finance, LinkedIn, and photo editing.">
 <meta property="og:url" content="https://prompts-lib.github.io/">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://prompts-lib.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://prompts-lib.github.io/assets/og-image.png">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
 <meta name="twitter:title" content="Prompt Library">
 <meta name="twitter:description" content="A searchable library of AI prompts for learning, personal finance, LinkedIn, and photo editing.">
 <title>Prompt Library</title>
 <style>
 * { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f1ea; color: #1f2937; line-height: 1.55; }
-header { background: #1f2937; color: #fff; padding: 2rem 1rem 1.5rem; }
-header > div, main { max-width: 900px; margin: 0 auto; }
-header h1 { margin: 0 0 .25rem; font-size: 2rem; }
-header p { margin: 0; color: #d1d5db; }
-main { padding: 1.25rem 1rem 3rem; }
+:root { --bg: #f5f0e6; --card: #fff; --ink: #1a2332; --muted: #667085; --brand: #c2410c; --brand-dark: #9a3412; --line: #e4e7ec; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+header { position: sticky; top: 0; z-index: 10; background: var(--card); border-bottom: 1px solid var(--line); box-shadow: 0 1px 4px rgba(26, 35, 50, 0.08); }
+.header-inner { max-width: 900px; margin: 0 auto; padding: .75rem 1rem; display: flex; align-items: center; gap: .75rem; }
+.logo-mark { display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; flex: 0 0 auto; border-radius: .6rem; background: var(--brand); color: #fff; }
+.logo-mark img { width: 100%; height: 100%; border-radius: .6rem; object-fit: cover; display: block; }
+.hero img { width: 100%; height: auto; border-radius: 1rem; display: block; margin: 0 0 1.25rem; }
+header h1 { margin: 0; font-size: 1.5rem; line-height: 1.2; }
+main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+.tagline { margin: 0 0 1.25rem; color: var(--muted); font-size: 1.05rem; }
 .controls { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-bottom: 1rem; }
 .controls label { font-weight: 600; }
-#search { flex: 1 1 240px; padding: .6rem .75rem; font-size: 1rem; border: 1px solid #9ca3af; border-radius: .5rem; background: #fff; color: #1f2937; }
+#search { flex: 1 1 240px; padding: .7rem 1rem; font-size: 1rem; border: 1px solid var(--line); border-radius: .75rem; background: var(--card); color: var(--ink); box-shadow: 0 1px 2px rgba(26, 35, 50, 0.06); }
+#search:focus { border-color: var(--brand); }
 .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .5rem; }
 button { font: inherit; cursor: pointer; }
-.pill { padding: .45rem .9rem; border: 1px solid #6b7280; border-radius: 999px; background: #fff; color: #1f2937; }
-.pill[aria-pressed="true"] { background: #1f2937; color: #fff; border-color: #1f2937; }
-#favOnly { padding: .45rem .9rem; border: 1px solid #6b7280; border-radius: 999px; background: #fff; color: #1f2937; }
-#favOnly[aria-pressed="true"] { background: #b45309; color: #fff; border-color: #b45309; }
-button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }
-#count { font-weight: 600; margin: .75rem 0 1rem; }
+.pill { padding: .45rem .95rem; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--ink); font-weight: 600; }
+.pill[aria-pressed="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+#count { font-weight: 600; margin: .75rem 0 1rem; color: var(--muted); }
 .grid { display: grid; gap: 1rem; }
-article { background: #fff; border: 1px solid #d1d5db; border-radius: .75rem; padding: 1.25rem; }
+article { background: var(--card); border: 1px solid var(--line); border-radius: 1rem; padding: 1.25rem; box-shadow: 0 1px 3px rgba(26, 35, 50, 0.08); }
+article:hover { box-shadow: 0 4px 12px rgba(26, 35, 50, 0.10); }
 article h2 { margin: 0 0 .25rem; font-size: 1.25rem; }
-.category { display: inline-block; font-size: .85rem; font-weight: 700; color: #92400e; background: #fef3c7; padding: .1rem .6rem; border-radius: 999px; margin-bottom: .75rem; }
+.category { display: inline-block; font-size: .85rem; font-weight: 700; color: #9a3412; background: #fff7ed; padding: .1rem .6rem; border-radius: 999px; margin-bottom: .75rem; }
 .body p { margin: 0 0 .6rem; white-space: pre-wrap; }
-mark { background: #fef08a; color: #1f2937; padding: 0 .15rem; border-radius: .2rem; }
-.note { color: #4b5563; font-style: italic; }
-.source { margin: .75rem 0 0; }
-.source a { color: #1d4ed8; }
+mark { background: #fef08a; color: var(--ink); padding: 0 .15rem; border-radius: .2rem; }
+.note { color: var(--muted); font-style: italic; }
 .actions { display: flex; gap: .5rem; margin-top: 1rem; }
-.copyBtn, .favBtn { padding: .5rem 1rem; border-radius: .5rem; border: 1px solid #6b7280; background: #fff; color: #1f2937; }
-.copyBtn { background: #1f2937; color: #fff; border-color: #1f2937; }
-.favBtn[aria-pressed="true"] { color: #b45309; border-color: #b45309; font-weight: 700; }
-@media (max-width: 600px) { header h1 { font-size: 1.6rem; } article { padding: 1rem; } }
+.copyBtn { padding: .55rem 1.1rem; border-radius: .5rem; border: 1px solid var(--brand); background: var(--brand); color: #fff; font-weight: 600; }
+.copyBtn:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+@media (max-width: 600px) { header h1 { font-size: 1.25rem; } .header-inner { padding: .6rem 1rem; } article { padding: 1rem; } main { padding: 1.25rem 1rem 2.5rem; } }
 </style>
 </head>
 <body>
 <header>
-<div>
+<div class="header-inner">
+<span class="logo-mark" aria-hidden="true"><img src="assets/icon.png" alt=""></span>
 <h1>Prompt Library</h1>
-<p>Copy-ready AI prompts for learning, personal finance, LinkedIn, and photo editing.</p>
 </div>
 </header>
 <main>
+<p class="tagline">Copy-ready AI prompts for learning, personal finance, LinkedIn, and photo editing.</p>
+<div class="hero"><img src="assets/hero.webp" alt="Illustration of a person chatting with a friendly AI assistant about prompts"></div>
 <div class="controls">
 <label for="search">Search prompts</label>
 <input id="search" type="search" placeholder="Search titles and prompt text…">
@@ -65,7 +72,6 @@ mark { background: #fef08a; color: #1f2937; padding: 0 .15rem; border-radius: .2
 <button class="pill" type="button" data-category="Personal Finance" aria-pressed="false">Personal Finance</button>
 <button class="pill" type="button" data-category="LinkedIn" aria-pressed="false">LinkedIn</button>
 <button class="pill" type="button" data-category="Photo Editing" aria-pressed="false">Photo Editing</button>
-<button id="favOnly" type="button" aria-pressed="false">★ Favorites only</button>
 </div>
 <p id="count" aria-live="polite"></p>
 <div class="grid" id="list"></div>
@@ -73,51 +79,41 @@ mark { background: #fef08a; color: #1f2937; padding: 0 .15rem; border-radius: .2
 </main>
 <script>
 const PROMPTS = [
-{"id":1,"title":"The Learning Curve Destroyer","category":"Learning","body":"You are a teacher who has only 4 hours with me and will never see me again.\n\nYour only objective is to make me functional in [SKILL] before the time runs out. Do not give me theory without practical use, and do not give me a generic list.\n\nTell me three things: what to learn first, what to ignore completely, and the one exercise that, done a single time, would put me ahead of 70% of people who have studied this for months.\n\nThen teach me the first step and wait for my response before continuing.","note":"For picking up any new skill fast — what to learn first, what to skip, and the one exercise that matters most.","sourceName":"Your Ai Compass on Instagram","sourceUrl":"https://www.instagram.com/p/DexznxDjOkD/"},
-{"id":2,"title":"The Real Mistake Simulator","category":"Learning","body":"Do not explain [CONCEPT] to me.\n\nPut me directly into a realistic situation where I would have to use it and would probably make a mistake. Then wait for my response.\n\nWhen I make a mistake, do not give me the answer. Ask me one question that forces me to find where my reasoning broke.\n\nGive me the answer only after I have tried at least twice. Then repeat the cycle with a new situation until I can get it right without hesitation.","note":"Learn by doing: get dropped into a realistic scenario and find your own mistakes before being told the answer.","sourceName":"Your Ai Compass on Instagram","sourceUrl":"https://www.instagram.com/p/DexznxDjOkD/"},
-{"id":3,"title":"The Impossible Language Translator","category":"Learning","body":"The content below is confusing to me.\n\nBefore explaining anything, tell me the one core idea that, once I understand it, makes the rest fall into place.\n\nExplain only that idea first, using an everyday analogy and no technical terms.\n\nThen ask me 3 questions that only someone who truly understood it could answer. Ask them one at a time and wait for my answers.\n\nDo not move on to the rest until I pass all three.\n\n[PASTE THE CONTENT HERE]","note":"Paste in confusing material and get the one core idea first, explained with an everyday analogy, then get quizzed on it.","sourceName":"Your Ai Compass on Instagram","sourceUrl":"https://www.instagram.com/p/DexznxDjOkD/"},
-{"id":4,"title":"The Personal Path Architect","category":"Learning","body":"My real goal is [GOAL]. It is not to learn [SKILL] in general. It is to achieve [SPECIFIC RESULT] within [DEADLINE].\n\n• already know [WHAT I ALREADY KNOW].\n\nBased on that, build me a 7-day learning path. Each day must include: one single task that fits within 45 minutes, a clear criterion so I know whether I did it correctly, and what not to do that day so I do not waste time.\n\nIf the entire path does not lead me to the goal, rebuild it until it does.","note":"Turns a real goal and deadline into a 7-day path of 45-minute daily tasks.","sourceName":"Your Ai Compass on Instagram","sourceUrl":"https://www.instagram.com/p/DexznxDjOkD/"},
-{"id":5,"title":"The Hidden Gap Detector","category":"Learning","body":"I think I already master [SKILL]. I want you to prove me wrong.\n\nAsk me 5 questions that seem simple but expose the gaps of someone who has never truly gone deep.\n\nAsk them one at a time and wait for each answer.\n\nAfter every answer, tell me what it reveals about what is still missing in my foundation.\n\nDo not go easy on me. If I am being shallow, tell me directly.","note":"Five seemingly simple questions that expose shallow understanding.","sourceName":"Your Ai Compass on Instagram","sourceUrl":"https://www.instagram.com/p/DexznxDjOkD/"},
-{"id":6,"title":"The Forced Feynman Method","category":"Learning","body":"I just studied [TOPIC].\n\nI am going to explain what I understood as if you were a 10-year-old child.\n\nWait for my explanation. While I explain, stop me every time I use jargon I cannot define, skip a step in the reasoning, or simplify something so much that it becomes wrong.\n\nAt the end, tell me exactly what those mistakes reveal about what is still not solid in my understanding.","note":"Explain a topic as if teaching a 10-year-old and get stopped wherever your understanding is shaky.","sourceName":"Your Ai Compass on Instagram","sourceUrl":"https://www.instagram.com/p/DexznxDjOkD/"},
-{"id":7,"title":"Financial Clarity","category":"Personal Finance","body":"Here are my monthly income and expenses: [insert the values]. Create a realistic, stress-free budget that includes savings, fixed costs, essential expenses, and a guilt-free amount for leisure.","note":"Turn your income and expenses into a realistic budget with savings and guilt-free leisure covered.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DeI3vjGgavh/"},
-{"id":8,"title":"Leak Detector","category":"Personal Finance","body":"Based on these expenses: [paste your expenses], identify where I'm wasting money and how I can reduce those expenses without lowering my quality of life.","note":"Find where money is leaking and how to cut it without lowering your quality of life.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DeI3vjGgavh/"},
-{"id":9,"title":"Income Expansion","category":"Personal Finance","body":"Considering my current income of [$X per month], suggest three realistic ways to increase my income from what I already know how to do. For each, indicate the effort required, the time to first results, and the main risk.","note":"Three realistic ways to earn more from skills you already have, with effort, timeline, and risk for each.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DeI3vjGgavh/"},
-{"id":10,"title":"Emergency Fund","category":"Personal Finance","body":"Create a savings plan that allows me to build an emergency fund equivalent to three months of my cost of living in [X months], considering my current income and expenses.","note":"A savings plan to build a three-month emergency fund on your current income.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DeI3vjGgavh/"},
-{"id":11,"title":"Debt Elimination","category":"Personal Finance","body":"I have these debts: [each debt, interest rate, and payment]. Create an aggressive but viable repayment plan to eliminate them using either the Avalanche method (highest rates first) or the Snowball method (smallest debts first). Explain which strategy makes more sense in my case.","note":"An aggressive but viable payoff plan — Avalanche vs Snowball, and which fits your debts.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DeI3vjGgavh/"},
-{"id":12,"title":"Budget From Scratch","category":"Personal Finance","body":"Help me create a budget from scratch for next month, where every dollar of my income has a defined purpose: food, housing, leisure, investments, financial reserves, and personal development.","note":"A zero-based budget for next month where every dollar has a job.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DeI3vjGgavh/"},
-{"id":13,"title":"Financial Mindset","category":"Personal Finance","body":"Create a five-minute daily exercise with reflections and practical actions to develop a healthier relationship with money, reduce a scarcity mindset, and strengthen a conscious abundance mindset.","note":"Five minutes a day to change your relationship with money.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DeI3vjGgavh/"},
-{"id":14,"title":"Headline Fix","category":"LinkedIn","body":"Rewrite my LinkedIn headline so it sounds like a top 1% operator in [industry].\n\nMake it:\n• Specific\n• Results-driven\n• Impossible to scroll past\n\nGive me 10 variations.\n\nCurrent profile: [paste here]","note":"Ten headline variations that sound like a top 1% operator in your industry.","sourceName":"campus.connect.in on Instagram","sourceUrl":"https://www.instagram.com/p/De3Z0DnGWhJ/"},
-{"id":15,"title":"About Section Rewrite","category":"LinkedIn","body":"Turn my About section into a story that hooks recruiters in the first 2 lines.\n\nUse the PAS framework:\nProblem → Agitate → Solution\n\nKeep it under 2000 characters and end with a strong CTA.\n\nCurrent profile: [paste here]","note":"Rewrites your About section as a PAS-framework story that hooks recruiters in two lines.","sourceName":"campus.connect.in on Instagram","sourceUrl":"https://www.instagram.com/p/De3Z0DnGWhJ/"},
-{"id":16,"title":"Experience Glow-Up","category":"LinkedIn","body":"Rewrite each job description using the XYZ formula:\n\nAccomplished X\nby doing Y\nresulting in Z.\n\nAdd metrics where possible.\n\nMake me sound impactful, not task-based.","note":"Rewrites job descriptions with the XYZ formula — impact and metrics, not tasks.","sourceName":"campus.connect.in on Instagram","sourceUrl":"https://www.instagram.com/p/De3Z0DnGWhJ/"},
-{"id":17,"title":"Skills + Keywords Audit","category":"LinkedIn","body":"Act as a LinkedIn SEO expert.\n\nBased on my target role of [role]:\n\n• List the top 25 recruiter keywords\n• Tell me which ones are missing\n• Show where to insert them naturally","note":"The top 25 recruiter keywords for your target role, which ones you're missing, and where they belong.","sourceName":"campus.connect.in on Instagram","sourceUrl":"https://www.instagram.com/p/De3Z0DnGWhJ/"},
-{"id":18,"title":"Recruiter Magnet Test","category":"LinkedIn","body":"Roleplay as a senior recruiter at [target company].\n\nRead my profile and tell me:\n\n• Would you reach out?\n• Why or why not?\n• What are the 5 biggest red flags?\n\nBe brutally honest.","note":"A brutally honest recruiter's-eye review of your profile, red flags included.","sourceName":"campus.connect.in on Instagram","sourceUrl":"https://www.instagram.com/p/De3Z0DnGWhJ/"},
-{"id":19,"title":"Featured Section Strategy","category":"LinkedIn","body":"Suggest 5 things I should pin in my Featured section for [target role].\n\nTell me:\n\n• What each should say\n• Why it builds credibility\n• What recruiters notice first","note":"Five things to pin in your Featured section, and what each should say.","sourceName":"campus.connect.in on Instagram","sourceUrl":"https://www.instagram.com/p/De3Z0DnGWhJ/"},
-{"id":20,"title":"Outreach DM Templates","category":"LinkedIn","body":"Write me 3 cold DM templates for recruiters at [dream companies].\n\nMake them:\n\n• Short\n• Personal\n• Impossible to ignore\n\nNo corporate fluff.","note":"Three short, personal cold DM templates for recruiters — no corporate fluff.","sourceName":"campus.connect.in on Instagram","sourceUrl":"https://www.instagram.com/p/De3Z0DnGWhJ/"},
-{"id":21,"title":"DSLR Portrait","category":"Photo Editing","body":"Transform my uploaded photo into a professional DSLR-style portrait. Preserve my recognizable facial features, facial structure, skin tone, hairstyle, and identity. Place me in [LOCATION]. Use realistic lighting, natural skin texture, shallow depth of field, subtle background separation, realistic lens perspective, professional composition, and authentic photographic detail. The final result should feel like a genuine photograph taken by a skilled photographer, not an artificial or overly retouched image.","note":"Make your photo look like it was captured by a professional photographer.","sourceName":"codingknowledge on Instagram","sourceUrl":"https://www.instagram.com/p/De1jyMwEh6X/"},
-{"id":22,"title":"Cinematic Photoshoot","category":"Photo Editing","body":"Turn my uploaded photo into a professional cinematic photo shoot. Place me in [SCENE] with dramatic yet realistic lighting, natural shadows, shallow depth of field, subtle background blur, cinematic composition, realistic skin texture, detailed clothing, and professional color grading. Keep my identity and facial features consistent. The final image should look like a real photograph from a high-end cinematic photo shoot.","note":"Movie-poster lighting without the Hollywood budget.","sourceName":"codingknowledge on Instagram","sourceUrl":"https://www.instagram.com/p/De1jyMwEh6X/"},
-{"id":23,"title":"Luxury Instagram Photo","category":"Photo Editing","body":"Transform my uploaded photo into a premium lifestyle photograph suitable for a high-end Instagram profile. Place me in [LUXURY LOCATION], wearing [OUTFIT], with sophisticated lighting, realistic environmental details, a natural pose, professional composition, shallow depth of field, and authentic skin texture. Make the image look luxurious and editorial without appearing artificial or overly edited.","note":"Editorial lifestyle photography for your profile.","sourceName":"codingknowledge on Instagram","sourceUrl":"https://www.instagram.com/p/De1jyMwEh6X/"},
-{"id":24,"title":"Travel Photo Anywhere","category":"Photo Editing","body":"Turn my uploaded photo into a professional, authentic travel photograph taken in [DESTINATION]. Keep my face and identity consistent while naturally integrating me into the location. Realistically adapt the lighting, shadows, perspective, weather, clothing, and surroundings. Use professional travel photography composition with realistic depth, natural colors, a detailed environment, and subtle background separation.","note":"Place yourself anywhere in the world with matching lighting and weather.","sourceName":"codingknowledge on Instagram","sourceUrl":"https://www.instagram.com/p/De1jyMwEh6X/"},
-{"id":25,"title":"Restore Old Photos","category":"Photo Editing","body":"Restore and enhance my uploaded photo into a natural, high-quality portrait. Preserve the person's true facial identity and original features. Improve lighting, sharpness, exposure, skin detail, composition, and background while keeping the result realistic. Avoid over-smoothing, changing facial features, or adding details that were not present. Make it look as if the original photo was carefully captured with a modern professional camera.","note":"Bring an old or low-quality photo closer to modern camera quality.","sourceName":"codingknowledge on Instagram","sourceUrl":"https://www.instagram.com/p/De1jyMwEh6X/"},
-{"id":26,"title":"LinkedIn Profile Photo","category":"Photo Editing","body":"Transform my uploaded photo into a professional profile picture suitable for LinkedIn, a company website, or a personal brand. Keep my face, facial structure, skin tone, hairstyle, and identity recognizable and natural. Use clean professional lighting, realistic skin texture, a natural expression, subtle background separation, sharp facial details, and a polished composition. Make it look like a real portrait taken by a professional photographer using a high-end camera.","note":"A clean, professional profile picture.","sourceName":"codingknowledge on Instagram","sourceUrl":"https://www.instagram.com/p/De1jyMwEh6X/"},
-{"id":27,"title":"Create a 30-Day LinkedIn Growth Plan","category":"LinkedIn","body":"Ask ChatGPT to build a practical 30-day LinkedIn strategy to improve profile visibility, grow relevant connections, and attract jobs, clients, or business opportunities, with a weekly action plan, weekly content ideas, networking message templates, and simple ways to track progress, assuming no paid LinkedIn tools.","note":"From @gptprompts.ai, Instagram post DfBp23SICzp (2026-10-27). Summary of the slide prompt; see the source post for the exact wording.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DfBp23SICzp/"},
-{"id":28,"title":"Optimize My Experience Section","category":"LinkedIn","body":"Ask ChatGPT to rewrite your work experience around measurable achievements rather than plain job descriptions, turning responsibilities into strong bullet points with action verbs, metrics, and business impact, without inventing achievements or numbers.","note":"From @gptprompts.ai, Instagram post DfBp23SICzp (2026-10-27). Summary of the slide prompt; see the source post for the exact wording.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DfBp23SICzp/"},
-{"id":29,"title":"Build Social Proof","category":"LinkedIn","body":"Ask ChatGPT to strengthen your LinkedIn profile using your real accomplishments: personalized recommendation requests for former colleagues, managers, or clients, plus ideas for projects, certifications, and portfolio items that demonstrate your expertise.","note":"From @gptprompts.ai, Instagram post DfBp23SICzp (2026-10-27). Summary of the slide prompt; see the source post for the exact wording.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DfBp23SICzp/"},
-{"id":30,"title":"LinkedIn Profile Audit","category":"LinkedIn","body":"Ask ChatGPT to act as a LinkedIn optimization expert, review your current profile, and list the biggest mistakes hurting your visibility, credibility, and career opportunities, with a specific fix for each.","note":"From @gptprompts.ai, Instagram post DfBp23SICzp (2026-10-27). Summary of the slide prompt; see the source post for the exact wording.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DfBp23SICzp/"},
-{"id":31,"title":"Write a Powerful Headline","category":"LinkedIn","body":"Ask ChatGPT to rewrite your LinkedIn headline to attract recruiters, clients, and industry professionals, using your role, skills, and target audience, and to offer several keyword-rich headline options that communicate your value clearly.","note":"From @gptprompts.ai, Instagram post DfBp23SICzp (2026-10-27). Summary of the slide prompt; see the source post for the exact wording.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DfBp23SICzp/"},
-{"id":32,"title":"Find the Right Keywords","category":"LinkedIn","body":"Ask ChatGPT to analyze your target role and industry and identify the most relevant LinkedIn search keywords — skills, job titles, and industry terms — and explain where to include them naturally without keyword stuffing.","note":"From @gptprompts.ai, Instagram post DfBp23SICzp (2026-10-27). Summary of the slide prompt; see the source post for the exact wording.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DfBp23SICzp/"},
-{"id":33,"title":"Transform My About Section","category":"LinkedIn","body":"Ask ChatGPT to rewrite your LinkedIn About section as a compelling, easy-to-scan professional story covering your experience, strongest skills, achievements, and career goals, optimized for relevant LinkedIn keywords, using your background details.","note":"From @gptprompts.ai, Instagram post DfBp23SICzp (2026-10-27). Summary of the slide prompt; see the source post for the exact wording.","sourceName":"gptprompts.ai on Instagram","sourceUrl":"https://www.instagram.com/p/DfBp23SICzp/"}
+{"id":1,"title":"The Learning Curve Destroyer","category":"Learning","body":"You are a teacher who has only 4 hours with me and will never see me again.\n\nYour only objective is to make me functional in [SKILL] before the time runs out. Do not give me theory without practical use, and do not give me a generic list.\n\nTell me three things: what to learn first, what to ignore completely, and the one exercise that, done a single time, would put me ahead of 70% of people who have studied this for months.\n\nThen teach me the first step and wait for my response before continuing.","note":"For picking up any new skill fast — what to learn first, what to skip, and the one exercise that matters most."},
+{"id":2,"title":"The Real Mistake Simulator","category":"Learning","body":"Do not explain [CONCEPT] to me.\n\nPut me directly into a realistic situation where I would have to use it and would probably make a mistake. Then wait for my response.\n\nWhen I make a mistake, do not give me the answer. Ask me one question that forces me to find where my reasoning broke.\n\nGive me the answer only after I have tried at least twice. Then repeat the cycle with a new situation until I can get it right without hesitation.","note":"Learn by doing: get dropped into a realistic scenario and find your own mistakes before being told the answer."},
+{"id":3,"title":"The Impossible Language Translator","category":"Learning","body":"The content below is confusing to me.\n\nBefore explaining anything, tell me the one core idea that, once I understand it, makes the rest fall into place.\n\nExplain only that idea first, using an everyday analogy and no technical terms.\n\nThen ask me 3 questions that only someone who truly understood it could answer. Ask them one at a time and wait for my answers.\n\nDo not move on to the rest until I pass all three.\n\n[PASTE THE CONTENT HERE]","note":"Paste in confusing material and get the one core idea first, explained with an everyday analogy, then get quizzed on it."},
+{"id":4,"title":"The Personal Path Architect","category":"Learning","body":"My real goal is [GOAL]. It is not to learn [SKILL] in general. It is to achieve [SPECIFIC RESULT] within [DEADLINE].\n\n• already know [WHAT I ALREADY KNOW].\n\nBased on that, build me a 7-day learning path. Each day must include: one single task that fits within 45 minutes, a clear criterion so I know whether I did it correctly, and what not to do that day so I do not waste time.\n\nIf the entire path does not lead me to the goal, rebuild it until it does.","note":"Turns a real goal and deadline into a 7-day path of 45-minute daily tasks."},
+{"id":5,"title":"The Hidden Gap Detector","category":"Learning","body":"I think I already master [SKILL]. I want you to prove me wrong.\n\nAsk me 5 questions that seem simple but expose the gaps of someone who has never truly gone deep.\n\nAsk them one at a time and wait for each answer.\n\nAfter every answer, tell me what it reveals about what is still missing in my foundation.\n\nDo not go easy on me. If I am being shallow, tell me directly.","note":"Five seemingly simple questions that expose shallow understanding."},
+{"id":6,"title":"The Forced Feynman Method","category":"Learning","body":"I just studied [TOPIC].\n\nI am going to explain what I understood as if you were a 10-year-old child.\n\nWait for my explanation. While I explain, stop me every time I use jargon I cannot define, skip a step in the reasoning, or simplify something so much that it becomes wrong.\n\nAt the end, tell me exactly what those mistakes reveal about what is still not solid in my understanding.","note":"Explain a topic as if teaching a 10-year-old and get stopped wherever your understanding is shaky."},
+{"id":7,"title":"Financial Clarity","category":"Personal Finance","body":"Here are my monthly income and expenses: [insert the values]. Create a realistic, stress-free budget that includes savings, fixed costs, essential expenses, and a guilt-free amount for leisure.","note":"Turn your income and expenses into a realistic budget with savings and guilt-free leisure covered."},
+{"id":8,"title":"Leak Detector","category":"Personal Finance","body":"Based on these expenses: [paste your expenses], identify where I'm wasting money and how I can reduce those expenses without lowering my quality of life.","note":"Find where money is leaking and how to cut it without lowering your quality of life."},
+{"id":9,"title":"Income Expansion","category":"Personal Finance","body":"Considering my current income of [$X per month], suggest three realistic ways to increase my income from what I already know how to do. For each, indicate the effort required, the time to first results, and the main risk.","note":"Three realistic ways to earn more from skills you already have, with effort, timeline, and risk for each."},
+{"id":10,"title":"Emergency Fund","category":"Personal Finance","body":"Create a savings plan that allows me to build an emergency fund equivalent to three months of my cost of living in [X months], considering my current income and expenses.","note":"A savings plan to build a three-month emergency fund on your current income."},
+{"id":11,"title":"Debt Elimination","category":"Personal Finance","body":"I have these debts: [each debt, interest rate, and payment]. Create an aggressive but viable repayment plan to eliminate them using either the Avalanche method (highest rates first) or the Snowball method (smallest debts first). Explain which strategy makes more sense in my case.","note":"An aggressive but viable payoff plan — Avalanche vs Snowball, and which fits your debts."},
+{"id":12,"title":"Budget From Scratch","category":"Personal Finance","body":"Help me create a budget from scratch for next month, where every dollar of my income has a defined purpose: food, housing, leisure, investments, financial reserves, and personal development.","note":"A zero-based budget for next month where every dollar has a job."},
+{"id":13,"title":"Financial Mindset","category":"Personal Finance","body":"Create a five-minute daily exercise with reflections and practical actions to develop a healthier relationship with money, reduce a scarcity mindset, and strengthen a conscious abundance mindset.","note":"Five minutes a day to change your relationship with money."},
+{"id":14,"title":"Headline Fix","category":"LinkedIn","body":"Rewrite my LinkedIn headline so it sounds like a top 1% operator in [industry].\n\nMake it:\n• Specific\n• Results-driven\n• Impossible to scroll past\n\nGive me 10 variations.\n\nCurrent profile: [paste here]","note":"Ten headline variations that sound like a top 1% operator in your industry."},
+{"id":15,"title":"About Section Rewrite","category":"LinkedIn","body":"Turn my About section into a story that hooks recruiters in the first 2 lines.\n\nUse the PAS framework:\nProblem → Agitate → Solution\n\nKeep it under 2000 characters and end with a strong CTA.\n\nCurrent profile: [paste here]","note":"Rewrites your About section as a PAS-framework story that hooks recruiters in two lines."},
+{"id":16,"title":"Experience Glow-Up","category":"LinkedIn","body":"Rewrite each job description using the XYZ formula:\n\nAccomplished X\nby doing Y\nresulting in Z.\n\nAdd metrics where possible.\n\nMake me sound impactful, not task-based.","note":"Rewrites job descriptions with the XYZ formula — impact and metrics, not tasks."},
+{"id":17,"title":"Skills + Keywords Audit","category":"LinkedIn","body":"Act as a LinkedIn SEO expert.\n\nBased on my target role of [role]:\n\n• List the top 25 recruiter keywords\n• Tell me which ones are missing\n• Show where to insert them naturally","note":"The top 25 recruiter keywords for your target role, which ones you're missing, and where they belong."},
+{"id":18,"title":"Recruiter Magnet Test","category":"LinkedIn","body":"Roleplay as a senior recruiter at [target company].\n\nRead my profile and tell me:\n\n• Would you reach out?\n• Why or why not?\n• What are the 5 biggest red flags?\n\nBe brutally honest.","note":"A brutally honest recruiter's-eye review of your profile, red flags included."},
+{"id":19,"title":"Featured Section Strategy","category":"LinkedIn","body":"Suggest 5 things I should pin in my Featured section for [target role].\n\nTell me:\n\n• What each should say\n• Why it builds credibility\n• What recruiters notice first","note":"Five things to pin in your Featured section, and what each should say."},
+{"id":20,"title":"Outreach DM Templates","category":"LinkedIn","body":"Write me 3 cold DM templates for recruiters at [dream companies].\n\nMake them:\n\n• Short\n• Personal\n• Impossible to ignore\n\nNo corporate fluff.","note":"Three short, personal cold DM templates for recruiters — no corporate fluff."},
+{"id":21,"title":"DSLR Portrait","category":"Photo Editing","body":"Transform my uploaded photo into a professional DSLR-style portrait. Preserve my recognizable facial features, facial structure, skin tone, hairstyle, and identity. Place me in [LOCATION]. Use realistic lighting, natural skin texture, shallow depth of field, subtle background separation, realistic lens perspective, professional composition, and authentic photographic detail. The final result should feel like a genuine photograph taken by a skilled photographer, not an artificial or overly retouched image.","note":"Make your photo look like it was captured by a professional photographer."},
+{"id":22,"title":"Cinematic Photoshoot","category":"Photo Editing","body":"Turn my uploaded photo into a professional cinematic photo shoot. Place me in [SCENE] with dramatic yet realistic lighting, natural shadows, shallow depth of field, subtle background blur, cinematic composition, realistic skin texture, detailed clothing, and professional color grading. Keep my identity and facial features consistent. The final image should look like a real photograph from a high-end cinematic photo shoot.","note":"Movie-poster lighting without the Hollywood budget."},
+{"id":23,"title":"Luxury Instagram Photo","category":"Photo Editing","body":"Transform my uploaded photo into a premium lifestyle photograph suitable for a high-end Instagram profile. Place me in [LUXURY LOCATION], wearing [OUTFIT], with sophisticated lighting, realistic environmental details, a natural pose, professional composition, shallow depth of field, and authentic skin texture. Make the image look luxurious and editorial without appearing artificial or overly edited.","note":"Editorial lifestyle photography for your profile."},
+{"id":24,"title":"Travel Photo Anywhere","category":"Photo Editing","body":"Turn my uploaded photo into a professional, authentic travel photograph taken in [DESTINATION]. Keep my face and identity consistent while naturally integrating me into the location. Realistically adapt the lighting, shadows, perspective, weather, clothing, and surroundings. Use professional travel photography composition with realistic depth, natural colors, a detailed environment, and subtle background separation.","note":"Place yourself anywhere in the world with matching lighting and weather."},
+{"id":25,"title":"Restore Old Photos","category":"Photo Editing","body":"Restore and enhance my uploaded photo into a natural, high-quality portrait. Preserve the person's true facial identity and original features. Improve lighting, sharpness, exposure, skin detail, composition, and background while keeping the result realistic. Avoid over-smoothing, changing facial features, or adding details that were not present. Make it look as if the original photo was carefully captured with a modern professional camera.","note":"Bring an old or low-quality photo closer to modern camera quality."},
+{"id":26,"title":"LinkedIn Profile Photo","category":"Photo Editing","body":"Transform my uploaded photo into a professional profile picture suitable for LinkedIn, a company website, or a personal brand. Keep my face, facial structure, skin tone, hairstyle, and identity recognizable and natural. Use clean professional lighting, realistic skin texture, a natural expression, subtle background separation, sharp facial details, and a polished composition. Make it look like a real portrait taken by a professional photographer using a high-end camera.","note":"A clean, professional profile picture."},
+{"id":27,"title":"Create a 30-Day LinkedIn Growth Plan","category":"LinkedIn","body":"Ask ChatGPT to build a practical 30-day LinkedIn strategy to improve profile visibility, grow relevant connections, and attract jobs, clients, or business opportunities, with a weekly action plan, weekly content ideas, networking message templates, and simple ways to track progress, assuming no paid LinkedIn tools.","note":"A month-long plan to grow your LinkedIn presence."},
+{"id":28,"title":"Optimize My Experience Section","category":"LinkedIn","body":"Ask ChatGPT to rewrite your work experience around measurable achievements rather than plain job descriptions, turning responsibilities into strong bullet points with action verbs, metrics, and business impact, without inventing achievements or numbers.","note":"Turns job duties into achievement-led bullet points."},
+{"id":29,"title":"Build Social Proof","category":"LinkedIn","body":"Ask ChatGPT to strengthen your LinkedIn profile using your real accomplishments: personalized recommendation requests for former colleagues, managers, or clients, plus ideas for projects, certifications, and portfolio items that demonstrate your expertise.","note":"Builds credibility with recommendations and portfolio ideas."},
+{"id":30,"title":"LinkedIn Profile Audit","category":"LinkedIn","body":"Ask ChatGPT to act as a LinkedIn optimization expert, review your current profile, and list the biggest mistakes hurting your visibility, credibility, and career opportunities, with a specific fix for each.","note":"Spots the biggest profile mistakes and how to fix them."},
+{"id":31,"title":"Write a Powerful Headline","category":"LinkedIn","body":"Ask ChatGPT to rewrite your LinkedIn headline to attract recruiters, clients, and industry professionals, using your role, skills, and target audience, and to offer several keyword-rich headline options that communicate your value clearly.","note":"Headline options that state your value clearly."},
+{"id":32,"title":"Find the Right Keywords","category":"LinkedIn","body":"Ask ChatGPT to analyze your target role and industry and identify the most relevant LinkedIn search keywords — skills, job titles, and industry terms — and explain where to include them naturally without keyword stuffing.","note":"Finds the search terms recruiters actually use."},
+{"id":33,"title":"Transform My About Section","category":"LinkedIn","body":"Ask ChatGPT to rewrite your LinkedIn About section as a compelling, easy-to-scan professional story covering your experience, strongest skills, achievements, and career goals, optimized for relevant LinkedIn keywords, using your background details.","note":"Turns your background into a scannable professional story."}
 ];
-let favorites = [];
-try {
-  const raw = localStorage.getItem("prompt-library-favorites");
-  const parsed = raw ? JSON.parse(raw) : [];
-  if (Array.isArray(parsed)) favorites = parsed.filter(function (n) { return typeof n === "number"; });
-} catch (e) { favorites = []; }
-function saveFavorites() {
-  try { localStorage.setItem("prompt-library-favorites", JSON.stringify(favorites)); } catch (e) {}
-}
 let activeCategory = "All";
-let favoritesOnly = false;
 const listEl = document.getElementById("list");
 const countEl = document.getElementById("count");
 const searchEl = document.getElementById("search");
@@ -169,7 +165,6 @@ function render() {
   const q = searchEl.value.trim().toLowerCase();
   const shown = PROMPTS.filter(function (p) {
     if (activeCategory !== "All" && p.category !== activeCategory) return false;
-    if (favoritesOnly && favorites.indexOf(p.id) === -1) return false;
     if (q && (p.title + " " + p.body).toLowerCase().indexOf(q) === -1) return false;
     return true;
   });
@@ -193,18 +188,6 @@ function render() {
       note.textContent = p.note;
       card.appendChild(note);
     }
-    if (p.sourceUrl && p.sourceUrl.indexOf("https://www.instagram.com/") === 0 && p.sourceName) {
-      const src = document.createElement("p");
-      src.className = "source";
-      src.appendChild(document.createTextNode("Source: "));
-      const a = document.createElement("a");
-      a.href = p.sourceUrl;
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.textContent = p.sourceName;
-      src.appendChild(a);
-      card.appendChild(src);
-    }
     const actions = document.createElement("div");
     actions.className = "actions";
     const copyBtn = document.createElement("button");
@@ -213,21 +196,7 @@ function render() {
     copyBtn.textContent = "Copy prompt";
     copyBtn.setAttribute("aria-label", "Copy " + p.title);
     copyBtn.addEventListener("click", function () { copyText(p.body, copyBtn); });
-    const favBtn = document.createElement("button");
-    favBtn.type = "button";
-    favBtn.className = "favBtn";
-    const isFav = favorites.indexOf(p.id) !== -1;
-    favBtn.setAttribute("aria-pressed", isFav ? "true" : "false");
-    favBtn.textContent = isFav ? "★ Favorited" : "☆ Favorite";
-    favBtn.setAttribute("aria-label", (isFav ? "Remove " : "Favorite ") + p.title);
-    favBtn.addEventListener("click", function () {
-      const i = favorites.indexOf(p.id);
-      if (i === -1) favorites.push(p.id); else favorites.splice(i, 1);
-      saveFavorites();
-      render();
-    });
     actions.appendChild(copyBtn);
-    actions.appendChild(favBtn);
     card.appendChild(actions);
     listEl.appendChild(card);
   });
@@ -246,11 +215,6 @@ document.querySelectorAll(".pill").forEach(function (btn) {
     });
     render();
   });
-});
-document.getElementById("favOnly").addEventListener("click", function (e) {
-  favoritesOnly = !favoritesOnly;
-  e.currentTarget.setAttribute("aria-pressed", favoritesOnly ? "true" : "false");
-  render();
 });
 searchEl.addEventListener("input", render);
 render();
